@@ -13,19 +13,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Repository ni yuklash
+      - name: Repository yuklash
         uses: actions/checkout@v3
 
       - name: Flutter o‘rnatish
         uses: subosito/flutter-action@v2
         with:
           flutter-version: 3.19.0
+          channel: stable
 
       - name: Dependenciyalarni yuklash
         run: flutter pub get
+        working-directory: Hisobcheck-main
 
       - name: Web build qilish
-        run: flutter build web --release
+        run: flutter build web --release --base-href /REPOSITORY-NOMI/
+        working-directory: Hisobcheck-main
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
@@ -34,4 +37,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/web
+          publish_dir: checkepr-main/build/web
