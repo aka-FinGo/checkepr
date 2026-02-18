@@ -24,11 +24,11 @@ jobs:
 
       - name: Dependenciyalarni yuklash
         run: flutter pub get
-        working-directory: Hisobcheck-main
+        working-directory: checkepr-main
 
       - name: Web build qilish
         run: flutter build web --release --base-href /REPOSITORY-NOMI/
-        working-directory: Hisobcheck-main
+        working-directory: checkepr-main
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
