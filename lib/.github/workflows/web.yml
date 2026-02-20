@@ -1,3 +1,5 @@
+# FILE: .github/workflows/deploy.yml
+
 name: Deploy Flutter Web to GitHub Pages
 
 on:
@@ -19,7 +21,7 @@ jobs:
       - name: Flutter o‘rnatish
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.19.0
+          flutter-version: 3.22.0
           channel: stable
 
       - name: Dependenciyalarni yuklash
@@ -27,11 +29,13 @@ jobs:
         working-directory: checkepr-main
 
       - name: Web build qilish
-        run: flutter build web --release --base-href /REPOSITORY-NOMI/
+        run: |
+          flutter build web \
+          --release \
+          --base-href "/checkepr/" \
+          --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
+          --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
         working-directory: checkepr-main
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
 
       - name: GitHub Pages ga deploy qilish
         uses: peaceiris/actions-gh-pages@v3
