@@ -26,7 +26,6 @@ jobs:
 
       - name: Dependenciyalarni yuklash
         run: flutter pub get
-        working-directory: checkepr-main
 
       - name: Web build qilish
         run: |
@@ -35,7 +34,6 @@ jobs:
           --base-href "/checkepr/" \
           --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
           --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
-        working-directory: checkepr-main
 
       - name: GitHub Pages ga deploy qilish
         uses: peaceiris/actions-gh-pages@v3
