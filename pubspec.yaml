@@ -1,0 +1,11 @@
+name: hisobcheck
+description: Furniture ERP System
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.3.0
+
+dependencies:
+  flutter:
+    sdk: flutter
